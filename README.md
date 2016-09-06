@@ -10,5 +10,5 @@ A chat application that provides more of immersive experience
 
 ## Installing
 - Clone the repo
-- Do a python run.py
+- Run the command python app.py
 - http://127.0.0.1:5000 should be running the application
