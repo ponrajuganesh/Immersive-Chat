@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row" id="themes" align="center"> 
+   <a id='beach'><span class="label label-default">Beach</span></a>
+   <a id='forest'><span class="label label-default">Forest</span></a>
+   <a id='happy'><span class="label label-default">Happy</span></a>
+   <a id='sad'><span class="label label-default">Sad</span></a>
+   <a id='symphony'><span class="label label-default">Symphony</span></a>
+   <a id='storm'><span class="label label-default">Rainy</span></span></a>
+   <a id='peacefulNight'><span class="label label-default">PeacefulNight</span></a>
+   <a id="muteMusic"><span class="label label-default">Mute Sound</span></a>
+   <a id="unmuteMusic"><span class="label label-default">Unmute Sound</span></a>
+</div>
+<h1 style="color: #668CFF;"> Immersive Chat - Welcome {{username}} </h1>
+
+<input type="hidden" id="registered_username" name="registered_username" value={{username}}>
+<input type="hidden" id="receiver_name" name="receiver_name" value="">
+
+<div class="row" id="username_receiver_name">
+<div class="form-inline">
+    <form id="assign_receiver_name" method="POST" action='#'>
+        <input type="text" class="form-control" name="form_receiver_name" id="form_receiver_name" placeholder="Receiver User Name">
+        <input type="submit" value="Connect" class="btn btn-default">
+    </form>
+</div>
+</div>
+
+<div id="messages" style="display:none; width: 500px" class="row well">
+</div>
+
+<br/>
+<br/>
+<br/>
+
+<div class="row" style="display:none;" id="sendmessage">
+    <div class="form-inline">
+        <form id="send_room" method="POST" action='#'>
+            <input type="text" class="form-control" name="message_data" id="message_data" placeholder="Type. Press enter to send" style="width: 350px;">
+            <input type="submit" style="display:none" value="Send message" class="btn btn-default">
+        </form>
+    </div>
+</div>
+{% endblock %}

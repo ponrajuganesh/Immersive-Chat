@@ -1,0 +1,46 @@
+#mainDiv {
+	margin: auto;
+	width: 100%;
+}​
+
+input:focus {
+    outline: none;
+}
+
+a:hover {
+	text-decoration:none;
+	font-family: 'Montserrat', sans-serif;
+}
+
+h1 {
+	font-family: 'Lobster', cursive;
+	text-align: center;
+}
+
+h2 {
+  font-family: 'Montserrat', cursive;
+  text-align: center;
+}
+
+#typeddiv {
+  align: center;
+  width: 500px;
+  margin: 0 auto; 
+}
+
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: #333; /* Modern Browsers */
+}
+
+#messages {
+  overflow-y: scroll;
+  height: 350px;
+}
+
+body {
+   background-repeat:no-repeat;
+   background-size:cover;
+}

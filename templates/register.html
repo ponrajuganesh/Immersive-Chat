@@ -1,0 +1,155 @@
+<html>
+  <head>
+    <title>Immersive Chat - A new way of chatting</title>
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Arima+Madurai:400,500,900' rel='stylesheet' type='text/css'>
+    <link href="{{ url_for('.static', filename='main.css') }}" rel='stylesheet' type='text/css'>
+    <script type="text/javascript" src="{{ url_for('.static', filename='sugar.min.js') }}"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('.static', filename='Weather.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('.static', filename='typed.js') }}"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.5/socket.io.min.js"></script>
+    <link href="{{ url_for('.static', filename='style.css') }}" rel='stylesheet' type='text/css'>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+var audio = new Audio();
+            var theme = "";
+
+            function changeBackground(image_file) {
+                document.body.style.backgroundImage = "url('"+ image_file +"')";
+            }
+
+            function playMusic(music_file) {
+                audio = new Audio(music_file);
+                audio.play();
+                audio.addEventListener('ended', function() {
+                    this.currentTime = 0;
+                    this.play();
+                }, false);
+            }
+
+            function muteMusic() {
+                audio.pause();
+                return false;
+            }
+
+            function unmuteMusic() {
+                audio.play();
+                return false;
+            }
+
+            function mapMusic(mode) {
+                console.log("Map Music" + mode);
+                var musicFiles = {};
+                musicFiles['Forest'] = "static/sounds/forest.mp3";
+                musicFiles['Beach'] = "static/sounds/beach.mp3";
+                musicFiles['Happy'] = "static/sounds/happy.mp3";
+                musicFiles['Symphony'] = "http://www.mfiles.co.uk/mp3-downloads/mozart-symphony40-1.mp3";
+                musicFiles['Rainy'] = "static/sounds/storm.mp3";
+                musicFiles['PeacefulNight'] = "http://www.mfiles.co.uk/mp3-downloads/debussy-clair-de-lune.mp3";
+                musicFiles['Sad'] = "static/sounds/sad.mp3";
+
+                console.log("Result" + musicFiles[mode]);
+                return musicFiles[mode];
+            }
+
+            function mapAlert(mode) {
+                var alertFiles = {};
+                alertFiles['Forest'] = "static/sounds/breaking_stick_short.mp3";
+                alertFiles['Beach'] = "static/sounds/osprey_short.mp3";
+                alertFiles['Happy'] = "static/sounds/coin_short2.mp3";
+                alertFiles['Symphony'] = "static/sounds/cymbal_short.mp3";
+                alertFiles['Rainy'] = "static/sounds/tornado_warning_short.mp3";
+                alertFiles['PeacefulNight'] = "static/sounds/wolf_howl.mp3";
+                alertFiles['Sad'] = "static/sounds/generic_alert.mp3";
+
+                return alertFiles[mode];
+            }
+
+            function messageAlert() {
+                var alertFile = mapAlert(theme);
+                var alertAudio = new Audio(alertFile);
+                alertAudio.play()
+            }
+
+
+            function mapImage(mode) {
+                var imageFiles = {};
+
+                imageFiles['Forest'] = "static/images/forest.png";
+                imageFiles['Beach'] = "static/images/beach.png";
+                imageFiles['Happy'] = "static/images/happy.jpg";
+                imageFiles['Symphony'] = "static/images/symphony.png";
+                imageFiles['Rainy'] = "static/images/storm.png";
+                imageFiles['PeacefulNight'] = "static/images/peacefulNight.png";
+                imageFiles['Sad'] = "static/images/sad.png";
+
+                return imageFiles[mode];
+            }
+
+            function changeTheme(mode) {
+                muteMusic();
+                mode = $.trim(mode);
+                theme = mode;
+
+                var musicFile = mapMusic(mode);
+                var imageFile = mapImage(mode);
+
+                changeBackground(imageFile);
+                playMusic(musicFile);
+
+            }    		
+           $(function() {
+                $("#typed").typed({
+                    strings: ["I am HAPPY! XD", "I am SAD :'(", "It's RAINING...","Want to go to the BEACH tomorrow?", "Immersive Chat has changed chatrooms forever!!!"],
+                    typeSpeed: 100,
+                    startDelay: 5000,
+                    backDelay: 10000,
+                });
+
+                setTimeout(function() {
+                    changeTheme("Happy");                    
+                }, 7500);
+                setTimeout(function() {
+                    changeTheme("Sad");
+                }, 20000);
+                setTimeout(function() {
+                    changeTheme("Rainy");
+                }, 32500);
+                setTimeout(function() {
+                    changeTheme("Beach");
+                }, 48000);
+                setTimeout(function() {
+                    changeTheme("Happy");
+                }, 65000);
+            }); 
+       });
+    </script>
+ </head>
+ <body>
+<h1> Welcome To Immersive Chat {{username}} </h1>
+	<div align="center" class="row">
+		<form action="/register" method="POST" class="form-inline">
+			<div class="form-group">
+	        	<input type="text" class="form-control" name="uuname" id="uuname" placeholder="User Name">
+	        	<input type="submit" value="Register" class="btn btn-default">
+	        </div>
+		</form>
+	</div>
+
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	<div id="typeddiv" class="row"> <input class="form-control" type="text" id="typed"> </input> </div>
+</body>
+</html>
